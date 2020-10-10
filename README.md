@@ -6,43 +6,78 @@ Cake Shop API Services in Python Flask
 # Instal PIP3
 pip / pip3 is a de facto standard package-management system used to install and manage software packages written in Python. 
 
-# Instal pipx
-pipx is a tool to help you install and run end-user applications written in Python.  
+## Install PIP Env
 
 ```
-brew install pipx
+pip3 install pipenv
 ```
 
-# Install virtualenv
-virtualenv is a CLI tool that needs a Python interpreter to run. If you already have a Python 3.5+ interpreter the best is to use pipx to install virtualenv into an isolated environment. 
+# Create Project Config File. 
 
 ```
-pipx install virtualenv
+pipenv shell
 ```
 
-### Notification  
-Note: '/Users/<userName>/.local/bin' is not on your PATH environment variable. These apps will not be globally accessible until your PATH is updated. Run `pipx ensurepath` to automatically add it, or manually modify your PATH in your shell's config file (i.e. ~/.bashrc).  
-
+# Install Flash Project.
 ```
-pipx ensurepath
-```
-
-### Verify  
-```
-virtualenv --help
+pipenv install flask flask-sqlalchemy flask-marshmallow marshmallow-sqlalchemy
+pipenv install requests --upgrade
 ```
 
-## Setup Virtual Environment
+## Error: Lang Error
 
 ```
-virtualenv env
-source env/bin/activate
+Warning: the environment variable LANG is not set!
+We recommend setting this in ~/.profile (or equivalent) for proper expected behavior.
 ```
 
-## Install Flask Base Project
+### Edit RC File and Update Language
+```
+vi ~/.zshrc
+or
+vi ~/.bashrc
+```
+
+### Error: 
+```
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+```
+
+## Error: Python Error
 
 ```
-pip3 install flask flask-sqlalchemy
+Warning: Python 3.9 was not found on your system…
+Neither 'pyenv' nor 'asdf' could be found to install Python.
+You can specify specific versions of Python with:
+$ pipenv --python path/to/python
 ```
 
+```
+pipenv --python 3.8.2
+```
 
+## Run Application
+
+```
+python3 app.py
+```
+
+## Create DB
+
+```
+(cake-shop-py-api) ➜  cake-shop-py-api git:(main) ✗ python3
+Python 3.8.2 (default, Aug 25 2020, 09:23:57)
+[Clang 12.0.0 (clang-1200.0.32.2)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from app import db
+>>> db.create_all()
+```
+
+Error:
+```
+TypeError: __init__() got an unexpected keyword argument 'strict'
+```
+
+Reference: https://www.youtube.com/watch?v=PTZiDnuC86g
